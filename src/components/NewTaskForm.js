@@ -1,25 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 
-function NewTaskForm({ newTask, newCategory, setNewCategory, TASKS, handleCategoryChange }) {
+function NewTaskForm({ newTask, setNewTask, newCategory, setNewCategory, TASKS, onTaskFormSubmit }) {
   
   function handleCategoryChange(event){
-    const selected = event.taret.value
-    setNewCategory(selected)
+    setNewCategory(event.target.value)
   }
-
-  function handleFormSubmit(event){
-    event.preventDefault();
-    const newItem = {
-      text: newTask,
-      category: newCategory
-    }
+  function handleInputChange(event){
+    const value = event.target.value
+    setNewTask(value)
   }
-
   return (
-    <form className="new-task-form">
+    <form className="new-task-form" onSubmit={onTaskFormSubmit}>
       <label>
         Details
-        <input type="text" name="text" value={newTask}/>
+        <input type="text" name="text" value={newTask} onChange={handleInputChange} />
       </label>
       <label>
         Category

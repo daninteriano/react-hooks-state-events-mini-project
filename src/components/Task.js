@@ -2,7 +2,7 @@ import React from "react";
 
 function Task({ category, text }) {
   function handleDelete(event){
-    event.nativeEvent.path[1].remove();
+    event.target.parentNode.remove();
   }
   return (
     <div className="task">
