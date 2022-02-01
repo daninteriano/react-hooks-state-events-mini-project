@@ -8,17 +8,16 @@ function App() {
   const [selectedCategory, setSelectedCateory] = useState("All");
   const [newTask, setNewTask] = useState("");
   const [newCategory, setNewCategory] = useState("Code");
+  const [tasks, setTask] = useState(TASKS)
 
-  function handleCategoryChange(event){
-    setNewCategory(event.taret.value)
-  }
+
   function handleFormSubmit(event){
     event.preventDefault();
     const newItem = {
       text: newTask,
       category: newCategory
     }
-
+    setTask([...tasks, newItem])
   }
   return (
     <div className="App">
@@ -27,11 +26,11 @@ function App() {
       selectedCategory={selectedCategory}
       setSelectedCateory={setSelectedCateory}
       CATEGORIES={CATEGORIES}/>
-      <NewTaskForm TASKS={TASKS} newTask={newTask} 
-      handleCategoryChange={handleCategoryChange}
-      newCategory={newCategory}
+      <NewTaskForm TASKS={tasks} newTask={newTask} 
+      setNewCategory={setNewCategory}
+      setNewTask={setNewTask}
       onTaskFormSubmit={handleFormSubmit}/>
-      <TaskList taskList={TASKS} selectedCategory={selectedCategory}/>
+      <TaskList tasks={tasks} selectedCategory={selectedCategory}/>
     </div>
   );
 }

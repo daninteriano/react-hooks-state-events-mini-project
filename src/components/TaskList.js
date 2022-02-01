@@ -1,16 +1,16 @@
 import React from "react";
 import Task from "./Task";
 
-function TaskList({ taskList, selectedCategory }) {
+function TaskList({ tasks, selectedCategory }) {
   return (
     <div className="tasks">
-      {taskList.filter((task) => {
+      {tasks.filter((task) => {
         if(selectedCategory === "All")
         {return task}
         else if (task.category === selectedCategory) {
           return task  
          }}).map((task) => (
-        <Task key={task.text} category={task.category} text={task.text} />
+           <Task key={task.text} category={task.category} text={task.text} />
       ))}
     </div>
   );
