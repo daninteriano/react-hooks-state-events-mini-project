@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 
-function CategoryFilter({ arrayOfCategories }) {
-  const [selectedCategory, setSelectedCateory] = useState("All")
+function CategoryFilter({ CATEGORIES, setSelectedCateory, selectedCategory  }) {
+  
   function handleClass(event){
-    event.target.className = "selected"
     setSelectedCateory(event.target.innerText)
   } 
   return (
     <div className="categories">
-      <h5>Category filters</h5>
-      {arrayOfCategories.map((item) => (
-        <button key={item} onClick={handleClass}>{item}</button>
+      <h5>Category</h5>
+      {CATEGORIES.map((category) => (
+        <button key={category} onClick={handleClass} className={category === selectedCategory ? "selected" : ""}>{category}</button>
       ))}
     </div>
   );
